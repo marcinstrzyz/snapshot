@@ -90,10 +90,10 @@ function registerCypressSnapshot () {
       .then(function (contents) {
         if (!contents) {
           contents = ''
-          cy.writeFile(snapshotFileName, contents, 'utf-8', { log: false })
+          cy.writeFile(snapshotFileName, contents, 'utf-8', { log: false }).then(()=>contents)
+        }else{
+          return contents
         }
-
-        return contents
       })
     } else {
       readFile = cy
